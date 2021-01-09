@@ -1,16 +1,11 @@
 package com.github.harrisj09.irc.client.start;
 
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 public class StartView {
-
     private final StartController startController;
     private final Stage stage;
     private BorderPane borderPane;
@@ -23,6 +18,4 @@ public class StartView {
         this.stage = stage;
         borderPane = new BorderPane();
     }
-
-
 }

@@ -3,16 +3,12 @@ package com.github.harrisj09.irc.client;
 import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
-import com.github.harrisj09.irc.client.start.StartController;
-import com.github.harrisj09.irc.client.start.StartModel;
-import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -46,17 +42,15 @@ public class Main extends Application {
         HBox portBox = new HBox(new Text("Port"), port);
         HBox userNameBox = new HBox(new Text("UserName"), userName);
         Button button = new Button("Submit");
-        // TODO Implement this
-        // https://stackoverflow.com/a/37276108/13604948
         EventHandler<MouseEvent> eventHandler = e -> {
             Scene scene = canConnect(ip.getText(), port.getText(), userName.getText(), primaryStage);
             if (scene != null) {
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                primaryStage.setMaximized(true);
             }
         };
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-
         Scene scene = new Scene(new VBox(ipBox, portBox, userNameBox, button), 400, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -68,7 +62,7 @@ public class Main extends Application {
             ClientModel model = new ClientModel();
             ClientController controller = new ClientController(model);
             ClientView view = new ClientView(controller, primaryStage);
-            return new Scene(view.getLayout(), 600, 600);
+            return new Scene(view.getLayout(), 700, 700);
         }
         return null;
     }
