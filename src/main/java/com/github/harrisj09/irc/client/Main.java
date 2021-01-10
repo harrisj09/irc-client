@@ -14,6 +14,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 /**
  * Entry point of application
  *
@@ -43,7 +50,12 @@ public class Main extends Application {
         HBox userNameBox = new HBox(new Text("UserName"), userName);
         Button button = new Button("Submit");
         EventHandler<MouseEvent> eventHandler = e -> {
-            Scene scene = canConnect(ip.getText(), port.getText(), userName.getText(), primaryStage);
+            Scene scene = null;
+            try {
+                scene = canConnect(ip.getText(), port.getText(), userName.getText(), primaryStage);
+            } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
             if (scene != null) {
                 primaryStage.setScene(scene);
                 primaryStage.show();
@@ -56,7 +68,12 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public Scene canConnect(String ip, String port, String username, Stage primaryStage) {
+    public Scene canConnect(String ip, String port, String username, Stage primaryStage) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest build = HttpRequest.newBuilder().GET().uri(new URI("http://localhost:8080/serverconnect/" + username)).build();
+        HttpResponse<String> send = HttpClient.newBuilder()
+                .build()
+                .send(build, HttpResponse.BodyHandlers.ofString());
+        System.out.println(send.body());
         System.out.print("IP: " + ip.length() + "\nPort: " + port.length() + "\nUsername: " + username.length());
         if (ip.length() > 0 && port.length() > 0 && username.length() > 0) {
             ClientModel model = new ClientModel();
