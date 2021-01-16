@@ -4,7 +4,7 @@ public class StartController {
 
     private StartModel startModel;
 
-    public StartController(StartModel startModel) {
+    /*public StartController(StartModel startModel) {
         this.startModel = startModel;
-    }
+    }*/
 }

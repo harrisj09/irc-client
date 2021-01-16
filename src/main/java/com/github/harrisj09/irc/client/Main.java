@@ -3,6 +3,9 @@ package com.github.harrisj09.irc.client;
 import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
+import com.github.harrisj09.irc.client.screen.ScreenController;
+import com.github.harrisj09.irc.client.start.StartController;
+import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -42,6 +45,14 @@ public class Main extends Application {
 /*        StartModel model = new StartModel();
         StartController controller = new StartController(model);
         StartView view = new StartView(controller, primaryStage);*/
+        // this doesn't
+        Scene scene = new Scene(null);
+        primaryStage.setScene(scene);
+        ScreenController screenController = new ScreenController(scene);
+        screenController.addScreen("start", new StartView(new StartController(), primaryStage).createLayout());
+        screenController.activate("start");
+        /*
+        This works
         TextField ip = new TextField();
         TextField port = new TextField();
         TextField userName = new TextField();
@@ -64,12 +75,13 @@ public class Main extends Application {
         };
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         Scene scene = new Scene(new VBox(ipBox, portBox, userNameBox, button), 400, 400);
-        primaryStage.setScene(scene);
+        *//*primaryStage.setScene(scene);*/
         primaryStage.show();
     }
 
     public Scene canConnect(String ip, String port, String username, Stage primaryStage) throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest build = HttpRequest.newBuilder().GET().uri(new URI("http://localhost:8080/serverconnect/" + username)).build();
+        HttpClient client = HttpClient.newBuilder().build();
+        HttpRequest build = HttpRequest.newBuilder().GET().uri(new URI("http://localhost:8080/connect/" + username)).build();
         HttpResponse<String> send = HttpClient.newBuilder()
                 .build()
                 .send(build, HttpResponse.BodyHandlers.ofString());

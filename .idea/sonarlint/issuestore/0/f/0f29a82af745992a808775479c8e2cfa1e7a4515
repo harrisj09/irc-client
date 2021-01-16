@@ -1,11 +1,11 @@
 
-G
-java:S1068"*Remove this unused "center" private field.(àÑÈì8”š¬¤î.
-P
-java:S1068".Remove this unused "borderPane" private field.(ñØ¡©ùÿÿÿÿ8”š¬¤î.
-P
-java:S1068	"3Remove this unused "startController" private field.(ã•Ñ®8”š¬¤î.
+]
+java:S1128";Remove this unused import 'javafx.scene.layout.BorderPane'.(Îî¥üÿÿÿÿ8 ï„õî.
 D
-java:S1068"'Remove this unused "top" private field.(Â­²ã8”š¬¤î.
+java:S1068"'Remove this unused "top" private field.(Â­²ã8”š¬¤î.
 G
-java:S1068"*Remove this unused "bottom" private field.(ãúÑ8”š¬¤î.
+java:S1068"*Remove this unused "center" private field.(àÑÈì8”š¬¤î.
+G
+java:S1068"*Remove this unused "bottom" private field.(ãúÑ8”š¬¤î.
+P
+java:S1068"3Remove this unused "startController" private field.(ã•Ñ®8”š¬¤î.

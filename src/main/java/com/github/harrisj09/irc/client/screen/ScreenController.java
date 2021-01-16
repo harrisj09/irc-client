@@ -14,20 +14,19 @@ public class ScreenController {
     private ScreenModel screenModel;
     private Scene main;
 
-    public ScreenController(ScreenModel screenModel,Scene main) {
-        this.screenModel = screenModel;
+    public ScreenController(Scene main) {
         this.main = main;
     }
 
-    protected void addScreen(String name, Pane pane){
+    public void addScreen(String name, Pane pane){
         screenMap.put(name, pane);
     }
 
-    protected void removeScreen(String name){
+    public void removeScreen(String name){
         screenMap.remove(name);
     }
 
-    protected void activate(String name){
+    public void activate(String name){
         main.setRoot( screenMap.get(name) );
     }
 }
