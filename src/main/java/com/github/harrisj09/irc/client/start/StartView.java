@@ -16,6 +16,13 @@ public class StartView {
     private Node top;
     private Node center;
     private Node bottom;
+    private TextField ip;
+    private TextField port;
+    private TextField username;
+    private HBox ipBox;
+    private HBox portBox;
+    private HBox userNameBox;
+    private Button button;
 
     public StartView(StartController startController, Stage stage) {
         this.startController = startController;
@@ -23,13 +30,29 @@ public class StartView {
     }
 
     public VBox createLayout() {
-        TextField ip = new TextField();
-        TextField port = new TextField();
-        TextField userName = new TextField();
-        HBox ipBox = new HBox(new Text("IP"), ip);
-        HBox portBox = new HBox(new Text("Port"), port);
-        HBox userNameBox = new HBox(new Text("UserName"), userName);
-        Button button = new Button("Submit");
+        ip = new TextField();
+        port = new TextField();
+        username = new TextField();
+        ipBox = new HBox(new Text("IP"), ip);
+        portBox = new HBox(new Text("Port"), port);
+        userNameBox = new HBox(new Text("UserName"), username);
+        button = new Button("Submit");
         return new VBox(ipBox, portBox, userNameBox, button);
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public TextField getIp() {
+        return ip;
+    }
+
+    public TextField getPort() {
+        return port;
+    }
+
+    public TextField getUsername() {
+        return username;
     }
 }

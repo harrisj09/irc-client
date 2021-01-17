@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -42,15 +43,39 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-/*        StartModel model = new StartModel();
-        StartController controller = new StartController(model);
-        StartView view = new StartView(controller, primaryStage);*/
-        // this doesn't
-        Scene scene = new Scene(null);
+        Scene scene = new Scene(new Pane());
         primaryStage.setScene(scene);
+        ClientModel model = new ClientModel();
+        ClientController controller = new ClientController(model);
+        ClientView view = new ClientView(controller, primaryStage);
+        StartView startView = new StartView(new StartController(), primaryStage);
         ScreenController screenController = new ScreenController(scene);
-        screenController.addScreen("start", new StartView(new StartController(), primaryStage).createLayout());
+        screenController.addScreen("start", startView.createLayout());
+        screenController.addScreen("client", view.getLayout());
         screenController.activate("start");
+        primaryStage.setHeight(600);
+        primaryStage.setWidth(600);
+        EventHandler<MouseEvent> eventHandler = e -> {
+            System.out.println("Clicked");
+            // change height and width here
+        };
+        startView.getButton().addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        /*
+                EventHandler<MouseEvent> eventHandler = e -> {
+            Scene scene = null;
+            try {
+                scene = canConnect(ip.getText(), port.getText(), userName.getText(), primaryStage);
+            } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+            if (scene != null) {
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                primaryStage.setMaximized(true);
+            }
+        };
+        button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+         */
         /*
         This works
         TextField ip = new TextField();
@@ -79,19 +104,14 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public Scene canConnect(String ip, String port, String username, Stage primaryStage) throws URISyntaxException, IOException, InterruptedException {
+    public String canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
         HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest build = HttpRequest.newBuilder().GET().uri(new URI("http://localhost:8080/connect/" + username)).build();
+        HttpRequest build = HttpRequest.newBuilder().GET().uri(new URI("http://" + username + ":" + port + "/connect/" + username)).build();
         HttpResponse<String> send = HttpClient.newBuilder()
                 .build()
                 .send(build, HttpResponse.BodyHandlers.ofString());
-        System.out.println(send.body());
-        System.out.print("IP: " + ip.length() + "\nPort: " + port.length() + "\nUsername: " + username.length());
-        if (ip.length() > 0 && port.length() > 0 && username.length() > 0) {
-            ClientModel model = new ClientModel();
-            ClientController controller = new ClientController(model);
-            ClientView view = new ClientView(controller, primaryStage);
-            return new Scene(view.getLayout(), 700, 700);
+        if (send.statusCode() == 200) {
+            return send.body();
         }
         return null;
     }

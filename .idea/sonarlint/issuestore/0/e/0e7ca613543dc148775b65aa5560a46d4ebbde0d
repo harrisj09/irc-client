@@ -1,7 +1,11 @@
 
-W	java:S125 "<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
-]	java:S125*"<This block of commented-out lines of code should be removed.(Úûíƒÿÿÿÿÿ8‰‡¦¢î.
-h
-java:S21428"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8«á£ôî.
-Z	java:S106L"9Replace this use of System.out or System.err by a logger.(Ğ¸—Œşÿÿÿÿ8«½ºôî.
-U	java:S106M"9Replace this use of System.out or System.err by a logger.(ƒìáš8¯ëõôî.
+Z	java:S106X"9Replace this use of System.out or System.err by a logger.(Ğ¸—Œşÿÿÿÿ8«½ºôî.
+X	java:S1258"<This block of commented-out lines of code should be removed.(¿€‚ƒ8ö‰¸Äğ.
+X	java:S125N"<This block of commented-out lines of code should be removed.(‹ÃÆš8¾¹Äğ.
+]	java:S125-"<This block of commented-out lines of code should be removed.(Úûíƒÿÿÿÿÿ8‰‡¦¢î.
+M
+java:S1481S"+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8Ø„ŠÄğ.
+\
+java:S1854S":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8Ø„ŠÄğ.
+W	java:S125#"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
+U	java:S106Y"9Replace this use of System.out or System.err by a logger.(ƒìáš8¯ëõôî.

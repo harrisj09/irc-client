@@ -25,7 +25,7 @@ public class ClientView {
         borderPane = new BorderPane();
     }
 
-    public Parent getLayout() {
+    public BorderPane getLayout() {
         borderPane.setCenter(new ScrollPane());
         borderPane.setLeft(new VBox(new Text("Channels")));
         borderPane.setRight(new VBox(new Text("Users")));
