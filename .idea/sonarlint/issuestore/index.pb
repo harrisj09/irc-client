@@ -25,3 +25,9 @@ u
 Esrc/main/java/com/github/harrisj09/irc/client/screen/ScreenModel.java,0\6\06df473fd45ad35a80d67ea455627285741739fd
 t
 Dsrc/main/java/com/github/harrisj09/irc/client/screen/ScreenView.java,b\f\bfd39e11c86209dc1d4be807130b7510e2c11165
+l
+<src/main/java/com/github/harrisj09/irc/client/data/User.java,d\0\d07ac683f5643f27a8c975ee883926c562f7e919
+o
+?src/main/java/com/github/harrisj09/irc/client/data/Channel.java,7\d\7d00ef41e3d702c3d95d712482bfec4d99bade58
+o
+?src/main/java/com/github/harrisj09/irc/client/data/Message.java,c\5\c5921009485eddc959ee909491a7ed19d17a817c

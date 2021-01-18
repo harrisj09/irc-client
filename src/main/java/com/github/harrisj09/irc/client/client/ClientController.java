@@ -6,4 +6,8 @@ public class ClientController {
     public ClientController(ClientModel clientModel) {
         this.clientModel = clientModel;
     }
+
+    public void connectToServer(String ip, String port, String username) {
+
+    }
 }

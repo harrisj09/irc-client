@@ -9,21 +9,18 @@ import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+
 
 /**
  * Entry point of application
@@ -37,6 +34,7 @@ public class Main extends Application {
     scene.getStylesheets().add(css);
     */
 
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -45,10 +43,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Scene scene = new Scene(new Pane());
         primaryStage.setScene(scene);
+
         ClientModel model = new ClientModel();
         ClientController controller = new ClientController(model);
         ClientView view = new ClientView(controller, primaryStage);
+
         StartView startView = new StartView(new StartController(), primaryStage);
+
         ScreenController screenController = new ScreenController(scene);
         screenController.addScreen("start", startView.createLayout());
         screenController.addScreen("client", view.getLayout());
@@ -58,6 +59,18 @@ public class Main extends Application {
         EventHandler<MouseEvent> eventHandler = e -> {
             System.out.println("Clicked");
             // change height and width here
+            String result = null;
+            try {
+                result = canConnect(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText());
+            } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+            if(result != null) {
+                System.out.println("Connected");
+                System.out.println(result);
+                screenController.activate("client");
+                primaryStage.setMaximized(true);
+            }
         };
         startView.getButton().addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         primaryStage.show();
@@ -66,12 +79,18 @@ public class Main extends Application {
     public String canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
-                new URI("http://" + username + ":" + port + "/connect/" + username)).build();
-        HttpResponse<String> send = HttpClient.newBuilder()
-                .build()
-                .send(build, HttpResponse.BodyHandlers.ofString());
-        if (send.statusCode() == 200) {
-            return send.body();
+                new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
+        // try and catch needed here
+        HttpResponse<String> send;
+        try {
+            send = HttpClient.newBuilder()
+                    .build()
+                    .send(build, HttpResponse.BodyHandlers.ofString());
+            if (send.statusCode() == 200) {
+                return send.body();
+            }
+        } catch (ConnectException e) {
+            System.out.println("Failed to connect");
         }
         return null;
     }
