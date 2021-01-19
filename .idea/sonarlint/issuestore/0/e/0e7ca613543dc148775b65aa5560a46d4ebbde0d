@@ -1,22 +1,12 @@
 
-Z
-java:S1128"8Remove this unused import 'javafx.scene.control.Button'.(Ë Í‹øÿÿÿÿ8ó´Æñ.
-H
-java:S1172O"&Remove these unused method parameters.(›òÃæúÿÿÿÿ8›ëëñ.
-U
-java:S1128"3Remove this unused import 'javafx.scene.text.Text'.(˜ÿ‡Üşÿÿÿÿ8ó´Æñ.
-M
-java:S1481P"+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8Ø„ŠÄğ.
-W
-java:S1128"5Remove this unused import 'javafx.scene.layout.VBox'.(íÆáÂùÿÿÿÿ8ó´Æñ.
-h
-java:S2142C"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
-X
-java:S1128";Remove this unused import 'javafx.scene.control.TextField'.(¨¢¤¶8ó´Æñ.
-W	java:S125$"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
-R
-java:S1128"5Remove this unused import 'javafx.scene.layout.HBox'.(äê…8ó´Æñ.
-Z	java:S106>"9Replace this use of System.out or System.err by a logger.(Šı‹úÿÿÿÿ8àƒªñ.
-Z	java:S106G"9Replace this use of System.out or System.err by a logger.(´áÀŠÿÿÿÿÿ8ÎÀ€•ñ.
 \
-java:S1854P":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8Ø„ŠÄğ.
+java:S1854R":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
+]	java:S125%"<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
+]	java:S125E"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8‹í’¹ñ.
+M
+java:S1481R"+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
+W	java:S125""<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
+h
+java:S2142A"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
+Z	java:S106F"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ8Õ›ç²ñ.
+]	java:S125-"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8¹ª‘¹ñ.

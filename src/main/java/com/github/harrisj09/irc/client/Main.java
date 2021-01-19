@@ -1,5 +1,6 @@
 package com.github.harrisj09.irc.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
@@ -9,6 +10,7 @@ import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -33,7 +35,7 @@ public class Main extends Application {
     String css = this.getClass().getClassLoader().getResource("style.css").toExternalForm();
     scene.getStylesheets().add(css);
     */
-
+    //Logger logger = LoggerFactory.getLogger("com.github.harrisj09.irc.client.Main");
 
     public static void main(String[] args) {
         launch(args);
@@ -41,6 +43,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        //logger.debug("connected");
         Scene scene = new Scene(new Pane());
         primaryStage.setScene(scene);
 
@@ -52,13 +55,11 @@ public class Main extends Application {
 
         ScreenController screenController = new ScreenController(scene);
         screenController.addScreen("start", startView.createLayout());
-        screenController.addScreen("client", view.getLayout());
         screenController.activate("start");
+
         primaryStage.setHeight(600);
         primaryStage.setWidth(600);
         EventHandler<MouseEvent> eventHandler = e -> {
-            System.out.println("Clicked");
-            // change height and width here
             String result = null;
             try {
                 result = canConnect(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText());
@@ -66,8 +67,14 @@ public class Main extends Application {
                 uriSyntaxException.printStackTrace();
             }
             if(result != null) {
-                System.out.println("Connected");
+                //logger.debug("connected");
                 System.out.println(result);
+                try {
+                    controller.connectToServer(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), result);
+                } catch (JsonProcessingException jsonProcessingException) {
+                    jsonProcessingException.printStackTrace();
+                }
+                screenController.addScreen("client", view.getLayout());
                 screenController.activate("client");
                 primaryStage.setMaximized(true);
             }
@@ -80,7 +87,6 @@ public class Main extends Application {
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
                 new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
-        // try and catch needed here
         HttpResponse<String> send;
         try {
             send = HttpClient.newBuilder()
@@ -89,9 +95,18 @@ public class Main extends Application {
             if (send.statusCode() == 200) {
                 return send.body();
             }
+            if (send.statusCode() == 409) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Username already taken");
+                alert.show();
+            }
+            // Add if statement for CONFLICT HttpStatus
         } catch (ConnectException e) {
-            System.out.println("Failed to connect");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to connect");
+            alert.show();
         }
         return null;
     }
+
+    // https://stackoverflow.com/questions/26344172/how-can-i-externally-update-a-javafx-scene
+    // Use this to update regularly
 }
