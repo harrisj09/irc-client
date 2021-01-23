@@ -43,10 +43,10 @@ public class ClientModel {
     }
 
     public Channel[] setChannels(String channels) throws JsonProcessingException {
-        String[] channelStrings = new ObjectMapper().readValue(channels, String[].class);
-        Channel[] channelArray = new Channel[channelStrings.length];
+        String[] channelString = new ObjectMapper().readValue(channels, String[].class);
+        Channel[] channelArray = new Channel[channelString.length];
         for (int i = 0; i < channelArray.length; i++) {
-            channelArray[i] = new Channel(channelStrings[i]);
+            channelArray[i] = new Channel(channelString[i]);
         }
         return channelArray;
     }

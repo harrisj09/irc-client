@@ -74,7 +74,11 @@ public class Main extends Application {
                 } catch (JsonProcessingException jsonProcessingException) {
                     jsonProcessingException.printStackTrace();
                 }
-                screenController.addScreen("client", view.getLayout());
+                try {
+                    screenController.addScreen("client", view.getLayout());
+                } catch (JsonProcessingException jsonProcessingException) {
+                    jsonProcessingException.printStackTrace();
+                }
                 screenController.activate("client");
                 primaryStage.setMaximized(true);
             }
