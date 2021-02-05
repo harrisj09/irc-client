@@ -31,3 +31,5 @@ o
 ?src/main/java/com/github/harrisj09/irc/client/data/Channel.java,7\d\7d00ef41e3d702c3d95d712482bfec4d99bade58
 o
 ?src/main/java/com/github/harrisj09/irc/client/data/Message.java,c\5\c5921009485eddc959ee909491a7ed19d17a817c
+s
+Csrc/main/java/com/github/harrisj09/irc/client/data/ChannelCell.java,1\e\1ef42d59781c271709d028f723ec644cb016505a

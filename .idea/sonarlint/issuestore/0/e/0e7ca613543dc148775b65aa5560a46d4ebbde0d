@@ -1,12 +1,12 @@
 
-Z	java:S106G"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ8Õ›ç²ñ.
-]	java:S125F"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8‹í’¹ñ.
-\
-java:S1854W":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
 M
-java:S1481W"+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
+java:S1481["+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
 h
 java:S2142B"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
+Z	java:S106G"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ8Õ›ç²ñ.
+]	java:S125."<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8¹ª‘¹ñ.
+\
+java:S1854[":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
 W	java:S125#"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
 ]	java:S125&"<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
-]	java:S125."<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8¹ª‘¹ñ.
+]	java:S125F"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8‹í’¹ñ.

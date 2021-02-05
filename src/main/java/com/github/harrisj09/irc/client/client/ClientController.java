@@ -6,9 +6,11 @@ import com.github.harrisj09.irc.client.data.Channel;
 public class ClientController {
     private ClientModel clientModel;
     private String channels;
+    private Channel currentChannel;
 
     public ClientController(ClientModel clientModel) {
         this.clientModel = clientModel;
+        currentChannel = null;
     }
 
     public void connectToServer(String ip, String port, String username, String channels) throws JsonProcessingException {
@@ -21,5 +23,15 @@ public class ClientController {
 
     public Channel[] getChannelsArray() throws JsonProcessingException {
         return clientModel.setChannels(channels);
+    }
+
+
+    public void changeChannel(Channel channel) {
+        System.out.println("changed channel");
+        currentChannel = channel;
+    }
+
+    public Channel getCurrentChannel() {
+        return currentChannel;
     }
 }
