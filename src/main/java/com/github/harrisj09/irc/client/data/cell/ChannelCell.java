@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class ChannelCell extends ListCell<Channel> {
 
@@ -25,6 +26,6 @@ public class ChannelCell extends ListCell<Channel> {
     }
 
     private Node createChannelCell(Channel item) {
-        return new HBox(new TextField(item.getChannelName()));
+        return new HBox(new Text(item.getChannelName()));
     }
 }

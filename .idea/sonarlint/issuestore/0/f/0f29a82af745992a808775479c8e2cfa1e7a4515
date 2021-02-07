@@ -1,17 +1,17 @@
 
-w
-java:S1450"ZRemove the "userNameBox" field and declare it as a local variable in the relevant methods.(€ıÁ³8¼Ö¥ñ.
 ]
 java:S1128";Remove this unused import 'javafx.scene.layout.BorderPane'.(Îî¥üÿÿÿÿ8 ï„õî.
-v
-java:S1450"TRemove the "ipBox" field and declare it as a local variable in the relevant methods.(Ë§¼¾ûÿÿÿÿ8®ù£ñ.
-G
-java:S1068"*Remove this unused "center" private field.(àÑÈì8ş‰¥ñ.
 D
 java:S1068"'Remove this unused "top" private field.(Â­²ã8ş‰¥ñ.
+G
+java:S1068"*Remove this unused "bottom" private field.(ãúÑ8ş‰¥ñ.
 P
 java:S1068"3Remove this unused "startController" private field.(ã•Ñ®8ş‰¥ñ.
 s
 java:S1450"VRemove the "portBox" field and declare it as a local variable in the relevant methods.(ùõ8”Ì¤ñ.
+v
+java:S1450"TRemove the "ipBox" field and declare it as a local variable in the relevant methods.(Ë§¼¾ûÿÿÿÿ8®ù£ñ.
 G
-java:S1068"*Remove this unused "bottom" private field.(ãúÑ8ş‰¥ñ.
+java:S1068"*Remove this unused "center" private field.(àÑÈì8ş‰¥ñ.
+w
+java:S1450"ZRemove the "userNameBox" field and declare it as a local variable in the relevant methods.(€ıÁ³8¼Ö¥ñ.

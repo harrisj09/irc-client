@@ -7,10 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -61,6 +58,12 @@ public class ClientView {
         channelListView.setOnMouseClicked(e -> {
             // Grab item clicked on, send that to the client.
             // Grab data (messages from server) and display it in createCenter()
+            MultipleSelectionModel<Channel> channel = channelListView.getSelectionModel();
+
+        });
+        channelListView.getSelectionModel().selectedItemProperty().addListener(e -> {
+            Channel selectedItem = channelListView.getSelectionModel().getSelectedItem();
+            System.out.println(selectedItem.getChannelName());
         });
         //list.setCellFactory(param -> new MusicCell(musicController));
         /*
