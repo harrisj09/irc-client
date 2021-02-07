@@ -8,6 +8,7 @@ import com.github.harrisj09.irc.client.screen.ScreenController;
 import com.github.harrisj09.irc.client.start.StartController;
 import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -43,7 +44,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //logger.debug("connected");
         Scene scene = new Scene(new Pane());
         primaryStage.setScene(scene);
 
@@ -67,7 +67,6 @@ public class Main extends Application {
                 uriSyntaxException.printStackTrace();
             }
             if(result != null) {
-                //logger.debug("connected");
                 System.out.println(result);
                 try {
                     controller.connectToServer(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), result);
@@ -85,6 +84,20 @@ public class Main extends Application {
         };
         startView.getButton().addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         primaryStage.show();
+
+/*
+        TODO: Fix this
+        Have this grab the
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException exc) {
+                throw new Error("Unexpected interruption", exc);
+            }
+            Platform.runLater(() -> System.out.println("Hello"));
+        });
+        thread.setDaemon(true);
+        thread.start();*/
     }
 
     public String canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {

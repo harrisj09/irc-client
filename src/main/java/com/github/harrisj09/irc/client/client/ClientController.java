@@ -19,6 +19,27 @@ public class ClientController {
         clientModel.setUsername(username);
         clientModel.setChannels(channels);
         this.channels = channels;
+        /*
+                HttpRequest build = HttpRequest.newBuilder().GET().uri(
+                new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
+        HttpResponse<String> send;
+        try {
+            send = HttpClient.newBuilder()
+                    .build()
+                    .send(build, HttpResponse.BodyHandlers.ofString());
+            if (send.statusCode() == 200) {
+                return send.body();
+            }
+            if (send.statusCode() == 409) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Username already taken");
+                alert.show();
+            }
+            // Add if statement for CONFLICT HttpStatus
+        } catch (ConnectException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to connect");
+            alert.show();
+        }
+         */
     }
 
     public Channel[] getChannelsArray() throws JsonProcessingException {
@@ -27,7 +48,6 @@ public class ClientController {
 
 
     public void changeChannel(Channel channel) {
-        System.out.println("changed channel");
         currentChannel = channel;
     }
 

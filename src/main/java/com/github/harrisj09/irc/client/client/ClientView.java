@@ -3,6 +3,7 @@ package com.github.harrisj09.irc.client.client;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.harrisj09.irc.client.data.Channel;
 import com.github.harrisj09.irc.client.data.cell.ChannelCell;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -25,6 +26,7 @@ public class ClientView {
     private Node center;
     private Node bottom;
     private ListView<Channel> channelListView = new ListView<>();
+    private Channel selectedChannel = null;
 
     public ClientView(ClientController clientController, Stage stage) {
         this.clientController = clientController;
@@ -55,17 +57,12 @@ public class ClientView {
         ObservableList<Channel> channels = FXCollections.observableArrayList(Arrays.asList(clientController.getChannelsArray()));
         channelListView.setItems(channels);
         channelListView.setCellFactory(param -> new ChannelCell(clientController));
-        channelListView.setOnMouseClicked(e -> {
-            // Grab item clicked on, send that to the client.
-            // Grab data (messages from server) and display it in createCenter()
-            MultipleSelectionModel<Channel> channel = channelListView.getSelectionModel();
-
-        });
         channelListView.getSelectionModel().selectedItemProperty().addListener(e -> {
-            Channel selectedItem = channelListView.getSelectionModel().getSelectedItem();
-            System.out.println(selectedItem.getChannelName());
+            selectedChannel = channelListView.getSelectionModel().getSelectedItem();
+            clientController.changeChannel(selectedChannel);
+            System.out.println(selectedChannel.getChannelName());
         });
-        //list.setCellFactory(param -> new MusicCell(musicController));
+    //list.setCellFactory(param -> new MusicCell(musicController));
         /*
         Have a method in ClientController that accepts what channel you clicked on in ClientController so you
         can perform whatever's needed.

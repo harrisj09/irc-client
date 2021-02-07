@@ -1,12 +1,16 @@
 
-]	java:S125F"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8‹í’¹ñ.
+Z	java:S106H"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ8Õ›ç²ñ.
+]	java:S125'"<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
 M
-java:S1481["+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
-W	java:S125#"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
-]	java:S125."<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8¹ª‘¹ñ.
-Z	java:S106G"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ8Õ›ç²ñ.
-]	java:S125&"<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
-\
-java:S1854[":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
+java:S1481h"+Remove this unused "client" local variable.(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
+]	java:S125/"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8¹ª‘¹ñ.
 h
-java:S2142B"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
+java:S2142C"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
+\
+java:S1854h":Remove this useless assignment to local variable "client".(îñ™¡şÿÿÿÿ8§Ç®¶ñ.
+W	java:S125$"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
+]	java:S125G"<This block of commented-out lines of code should be removed.(‹Š®üÿÿÿÿ8‹í’¹ñ.
+b	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(‡´Á’8Ş»¹Ø÷.
+c
+java:S2142^"FEither re-interrupt this method or rethrow the "InterruptedException".(¬Êã®8Ş»¹Ø÷.
+U	java:S106a"9Replace this use of System.out or System.err by a logger.(ÉÃÓ¡8Ş»¹Ø÷.

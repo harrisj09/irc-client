@@ -43,11 +43,24 @@ public class ClientModel {
     }
 
     public Channel[] setChannels(String channels) throws JsonProcessingException {
-        String[] channelString = new ObjectMapper().readValue(channels, String[].class);
+        String[] channelString = mapData(channels);
         Channel[] channelArray = new Channel[channelString.length];
         for (int i = 0; i < channelArray.length; i++) {
             channelArray[i] = new Channel(channelString[i]);
         }
         return channelArray;
+    }
+
+    public Channel[] grabUsers(String users) throws JsonProcessingException {
+        String[] userString = mapData(users);
+        Channel[] usersArray = new Channel[userString.length];
+        for (int i = 0; i < usersArray.length; i++) {
+            usersArray[i] = new Channel(userString[i]);
+        }
+        return usersArray;
+    }
+
+    public String[] mapData(String data) throws JsonProcessingException {
+        return new ObjectMapper().readValue(data, String[].class);
     }
 }
