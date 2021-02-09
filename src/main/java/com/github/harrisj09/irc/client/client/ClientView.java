@@ -7,15 +7,16 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxListCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URISyntaxException;
 import java.util.Arrays;
 
 public class ClientView {
@@ -39,7 +40,36 @@ public class ClientView {
         borderPane.setLeft(createLeft());
         borderPane.setRight(createRight());
         borderPane.setBottom(new HBox(new TextField(), new Button("Submit")));
+        refreshData();
         return borderPane;
+    }
+
+    public void refreshData() {
+        Thread thread = new Thread(() -> {
+            while(true) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException exc) {
+                    throw new Error("Unexpected interruption", exc);
+                }
+                if (clientController.isConnectedToServer()) {
+                    Platform.runLater(() -> {
+                        try {
+                            clientController.setChannels(clientController.grabChannels());
+                            Channel[] channels = clientController.getChannelsArray();
+                            reCreateLeft(channels);
+                            if (selectedChannel != null) {
+
+                            }
+                        } catch (URISyntaxException | JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public Node createCenter() throws JsonProcessingException {
@@ -62,28 +92,18 @@ public class ClientView {
             clientController.changeChannel(selectedChannel);
             System.out.println(selectedChannel.getChannelName());
         });
-    //list.setCellFactory(param -> new MusicCell(musicController));
-        /*
-        Have a method in ClientController that accepts what channel you clicked on in ClientController so you
-        can perform whatever's needed.
-         */
         return channelListView;
     }
 
-    public void refreshData() throws JsonProcessingException {
+    // TODO Fix this
+    public void reCreateLeft(Channel[] channelArray) {
         channelListView = new ListView<>();
-        ObservableList<Channel> channels = FXCollections.observableArrayList(Arrays.asList(clientController.getChannelsArray()));
+        ObservableList<Channel> channels = FXCollections.observableArrayList(Arrays.asList(channelArray));
         channelListView.setItems(channels);
         channelListView.setCellFactory(param -> new ChannelCell(clientController));
         channelListView.getSelectionModel().selectedItemProperty().addListener(e -> {
             selectedChannel = channelListView.getSelectionModel().getSelectedItem();
             clientController.changeChannel(selectedChannel);
-            System.out.println(selectedChannel.getChannelName());
         });
-        borderPane.setLeft(channelListView);
-        // grab users
-        if (selectedChannel != null) {
-            // grab messages
-        }
     }
 }

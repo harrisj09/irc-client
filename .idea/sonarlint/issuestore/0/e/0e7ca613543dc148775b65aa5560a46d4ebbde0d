@@ -1,13 +1,15 @@
 
+U	java:S106^"9Replace this use of System.out or System.err by a logger.(ÉÃÓ¡8–…•¦ø.
+\
+java:S1854g":Remove this useless assignment to local variable "client".(îñ™¡þÿÿÿÿ8§Ç®¶ñ.
+W	java:S125$"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
+t
+java:S3776."RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Éß÷øÿÿÿÿ8žˆ£¦ø.
+c
+java:S2142Z"FEither re-interrupt this method or rethrow the "InterruptedException".(¬Êã®8–…•¦ø.
+]	java:S125'"<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
+b	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(‡´Á’8–…•¦ø.
 h
 java:S2142B"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äý”ñ.
-]	java:S125'"<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
-Z	java:S106F"9Replace this use of System.out or System.err by a logger.(®ýáëûÿÿÿÿ8Õ›ç²ñ.
-T
-java:S1135Y"2Complete the task associated to this TODO comment.(Úžç»ÿÿÿÿÿ8Æ±ï÷.
 M
-java:S1481h"+Remove this unused "client" local variable.(îñ™¡þÿÿÿÿ8§Ç®¶ñ.
-W	java:S125$"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
-X	java:S125["<This block of commented-out lines of code should be removed.(®Ì»ê8¿®œï÷.
-\
-java:S1854h":Remove this useless assignment to local variable "client".(îñ™¡þÿÿÿÿ8§Ç®¶ñ.
+java:S1481g"+Remove this unused "client" local variable.(îñ™¡þÿÿÿÿ8§Ç®¶ñ.

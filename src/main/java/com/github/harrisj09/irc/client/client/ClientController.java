@@ -2,6 +2,7 @@ package com.github.harrisj09.irc.client.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.harrisj09.irc.client.data.Channel;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 import java.io.IOException;
@@ -23,15 +24,8 @@ public class ClientController {
         currentChannel = null;
     }
 
-    public void connectToServer(String ip, String port, String username, String channels) throws JsonProcessingException {
-        clientModel.setIp(ip);
-        clientModel.setPort(port);
-        clientModel.setUsername(username);
-        clientModel.setChannels(channels);
-        this.channels = channels;
-        connectedToServer = true;
-        /*
-                HttpRequest build = HttpRequest.newBuilder().GET().uri(
+    public boolean canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest build = HttpRequest.newBuilder().GET().uri(
                 new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
         HttpResponse<String> send;
         try {
@@ -39,7 +33,8 @@ public class ClientController {
                     .build()
                     .send(build, HttpResponse.BodyHandlers.ofString());
             if (send.statusCode() == 200) {
-                return send.body();
+                this.channels = send.body();
+                return true;
             }
             if (send.statusCode() == 409) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Username already taken");
@@ -50,13 +45,45 @@ public class ClientController {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to connect");
             alert.show();
         }
-         */
+        return false;
     }
 
-    public String grabChannelsData(String ip, String port) throws URISyntaxException {
-        HttpClient client = HttpClient.newBuilder().build();
+    public void connectToServer(String ip, String port, String username) throws IOException, InterruptedException, URISyntaxException {
+        clientModel.setIp(ip);
+        clientModel.setPort(port);
+        clientModel.setUsername(username);
+        clientModel.setChannels(channels);
+        connectedToServer = true;
+    }
+
+
+    public void refreshData() {
+        Thread thread = new Thread(() -> {
+            while(true) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException exc) {
+                    throw new Error("Unexpected interruption", exc);
+                }
+                if (isConnectedToServer()) {
+                    Platform.runLater(() -> System.out.println("Hello"));
+/*
+                    try {
+                        grabChannelsData();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+*/
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    public String grabChannels() throws URISyntaxException {
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
-                new URI("http://" + ip + ":" + port + "/connect/servers")).build();
+                new URI("http://" + clientModel.getIp() + ":" + clientModel.getPort() + "/connect/servers")).build();
         HttpResponse<String> send;
         try {
             send = HttpClient.newBuilder()
@@ -77,10 +104,21 @@ public class ClientController {
         return null;
     }
 
+    public String grabChannelMessages() {
+        return "";
+    }
+
+    public String grabServerUsers() {
+        return "";
+    }
+
     public Channel[] getChannelsArray() throws JsonProcessingException {
         return clientModel.setChannels(channels);
     }
 
+    public void setChannels(String channels) {
+        this.channels = channels;
+    }
 
     public void changeChannel(Channel channel) {
         currentChannel = channel;

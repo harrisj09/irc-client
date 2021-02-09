@@ -60,69 +60,20 @@ public class Main extends Application {
         primaryStage.setHeight(600);
         primaryStage.setWidth(600);
         EventHandler<MouseEvent> eventHandler = e -> {
-            String result = null;
             try {
-                result = canConnect(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText());
+                if (controller.canConnect(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText())) {
+                    controller.connectToServer(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText());
+                    screenController.addScreen("client", view.getLayout());
+                    screenController.activate("client");
+                    primaryStage.setMaximized(true);
+                } else {
+
+                }
             } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
-            }
-            if (result != null) {
-                try {
-                    controller.connectToServer(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), result);
-                } catch (JsonProcessingException jsonProcessingException) {
-                    jsonProcessingException.printStackTrace();
-                }
-                try {
-                    screenController.addScreen("client", view.getLayout());
-                } catch (JsonProcessingException jsonProcessingException) {
-                    jsonProcessingException.printStackTrace();
-                }
-                screenController.activate("client");
-                primaryStage.setMaximized(true);
             }
         };
         startView.getButton().addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         primaryStage.show();
-        Thread thread = new Thread(() -> {
-            while(true) {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException exc) {
-                    throw new Error("Unexpected interruption", exc);
-                }
-                if (controller.isConnectedToServer()) {
-                    Platform.runLater(() -> System.out.println("Hello"));
-                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
     }
-
-    public String canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest build = HttpRequest.newBuilder().GET().uri(
-                new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
-        HttpResponse<String> send;
-        try {
-            send = HttpClient.newBuilder()
-                    .build()
-                    .send(build, HttpResponse.BodyHandlers.ofString());
-            if (send.statusCode() == 200) {
-                return send.body();
-            }
-            if (send.statusCode() == 409) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Username already taken");
-                alert.show();
-            }
-            // Add if statement for CONFLICT HttpStatus
-        } catch (ConnectException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to connect");
-            alert.show();
-        }
-        return null;
-    }
-
-    // https://stackoverflow.com/questions/26344172/how-can-i-externally-update-a-javafx-scene
-    // Use this to update regularly
 }
