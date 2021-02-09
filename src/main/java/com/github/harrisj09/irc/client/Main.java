@@ -66,8 +66,7 @@ public class Main extends Application {
             } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
-            if(result != null) {
-                System.out.println(result);
+            if (result != null) {
                 try {
                     controller.connectToServer(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), result);
                 } catch (JsonProcessingException jsonProcessingException) {
@@ -84,20 +83,20 @@ public class Main extends Application {
         };
         startView.getButton().addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         primaryStage.show();
-
-/*
-        TODO: Fix this
-        Have this grab the
         Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException exc) {
-                throw new Error("Unexpected interruption", exc);
+            while(true) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException exc) {
+                    throw new Error("Unexpected interruption", exc);
+                }
+                if (controller.isConnectedToServer()) {
+                    Platform.runLater(() -> System.out.println("Hello"));
+                }
             }
-            Platform.runLater(() -> System.out.println("Hello"));
         });
         thread.setDaemon(true);
-        thread.start();*/
+        thread.start();
     }
 
     public String canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {

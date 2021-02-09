@@ -35,3 +35,5 @@ x
 Hsrc/main/java/com/github/harrisj09/irc/client/data/cell/ChannelCell.java,b\5\b5687ba79c292d71a258efe7288248ad986a6222
 x
 Hsrc/main/java/com/github/harrisj09/irc/client/data/cell/MessageCell.java,3\4\347897195a055a766049234e0d340b5b662215e9
+u
+Esrc/main/java/com/github/harrisj09/irc/client/data/cell/UserCell.java,8\6\86ae294d8f21671e5716c2b11f4a9ca634edd306

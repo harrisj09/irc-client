@@ -69,4 +69,21 @@ public class ClientView {
          */
         return channelListView;
     }
+
+    public void refreshData() throws JsonProcessingException {
+        channelListView = new ListView<>();
+        ObservableList<Channel> channels = FXCollections.observableArrayList(Arrays.asList(clientController.getChannelsArray()));
+        channelListView.setItems(channels);
+        channelListView.setCellFactory(param -> new ChannelCell(clientController));
+        channelListView.getSelectionModel().selectedItemProperty().addListener(e -> {
+            selectedChannel = channelListView.getSelectionModel().getSelectedItem();
+            clientController.changeChannel(selectedChannel);
+            System.out.println(selectedChannel.getChannelName());
+        });
+        borderPane.setLeft(channelListView);
+        // grab users
+        if (selectedChannel != null) {
+            // grab messages
+        }
+    }
 }
