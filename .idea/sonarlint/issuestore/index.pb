@@ -37,3 +37,11 @@ x
 Hsrc/main/java/com/github/harrisj09/irc/client/data/cell/MessageCell.java,3\4\347897195a055a766049234e0d340b5b662215e9
 u
 Esrc/main/java/com/github/harrisj09/irc/client/data/cell/UserCell.java,8\6\86ae294d8f21671e5716c2b11f4a9ca634edd306
+ƒ
+Ssrc/main/java/com/github/harrisj09/irc/client/client/connection/dto/ChannelDTO.java,e\1\e1355865517fe09897bec3c4ceca056904dc8bf1
+†
+Vsrc/main/java/com/github/harrisj09/irc/client/client/connection/ConnectionHandler.java,2\f\2fc46f7fda747c6cd7d9b877a81675a148bf0d66
+€
+Psrc/main/java/com/github/harrisj09/irc/client/client/connection/dto/UserDTO.java,8\c\8c998efdcce5e8655bd7d47a8356b680bb10dde2
+ƒ
+Ssrc/main/java/com/github/harrisj09/irc/client/client/connection/dto/MessageDTO.java,b\0\b0f0476f6aeb0cfe6bb2fb1e4016e39daea4a509

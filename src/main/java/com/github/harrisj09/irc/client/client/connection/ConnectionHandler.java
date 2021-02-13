@@ -17,8 +17,7 @@ public class ConnectionHandler {
     private String port;
     private String username;
 
-    public ConnectionHandler(String channels, String ip, String port, String username) {
-        this.channels = channels;
+    public ConnectionHandler(String ip, String port, String username) {
         this.ip = ip;
         this.port = port;
         this.username = username;

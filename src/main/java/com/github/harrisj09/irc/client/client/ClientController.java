@@ -50,6 +50,7 @@ public class ClientController {
         return false;
     }
 
+    @Deprecated
     public void connectToServer(String ip, String port, String username) throws IOException, InterruptedException, URISyntaxException {
         clientModel.setIp(ip);
         clientModel.setPort(port);

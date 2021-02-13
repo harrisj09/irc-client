@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
+import com.github.harrisj09.irc.client.client.connection.ConnectionHandler;
 import com.github.harrisj09.irc.client.screen.ScreenController;
 import com.github.harrisj09.irc.client.start.StartController;
 import com.github.harrisj09.irc.client.start.StartView;
@@ -31,12 +32,8 @@ import java.net.http.HttpResponse;
  * @author John Harris
  */
 public class Main extends Application {
-    /*
-    Use this to create CSS Layout
-    String css = this.getClass().getClassLoader().getResource("style.css").toExternalForm();
-    scene.getStylesheets().add(css);
-    */
-    //Logger logger = LoggerFactory.getLogger("com.github.harrisj09.irc.client.Main");
+
+    private ConnectionHandler connectionHandler;
 
     public static void main(String[] args) {
         launch(args);
@@ -60,8 +57,9 @@ public class Main extends Application {
         primaryStage.setHeight(600);
         primaryStage.setWidth(600);
         EventHandler<MouseEvent> eventHandler = e -> {
+            connectionHandler = new ConnectionHandler(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText());
             try {
-                if (controller.canConnect(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText())) {
+                if (connectionHandler.canConnect()) {
                     controller.connectToServer(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText());
                     screenController.addScreen("client", view.getLayout());
                     screenController.activate("client");
