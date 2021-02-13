@@ -24,6 +24,8 @@ public class ClientController {
         currentChannel = null;
     }
 
+    @Deprecated
+    // TODO Remove this
     public boolean canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
                 new URI("http://" + ip + ":" + port + "/connect/" + username)).build();

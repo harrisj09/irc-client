@@ -55,9 +55,12 @@ public class ClientView {
                 if (clientController.isConnectedToServer()) {
                     Platform.runLater(() -> {
                         try {
+                            System.out.println("Here");
+                            System.out.println(clientController.grabChannels());
                             clientController.setChannels(clientController.grabChannels());
                             Channel[] channels = clientController.getChannelsArray();
-                            reCreateLeft(channels);
+                            System.out.println(Arrays.toString(channels));
+                            borderPane.setLeft(reCreateLeft(channels));
                             if (selectedChannel != null) {
 
                             }
@@ -79,12 +82,14 @@ public class ClientView {
 
     public Node createRight() throws JsonProcessingException {
         // https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ScrollPane.html
+        ScrollPane usersList = new ScrollPane();
         return new ScrollPane(new Text("Users"));
     }
 
     public Node createLeft() throws JsonProcessingException {
         channelListView = new ListView<>();
         ObservableList<Channel> channels = FXCollections.observableArrayList(Arrays.asList(clientController.getChannelsArray()));
+        System.out.println("Array " + Arrays.toString(clientController.getChannelsArray()));
         channelListView.setItems(channels);
         channelListView.setCellFactory(param -> new ChannelCell(clientController));
         channelListView.getSelectionModel().selectedItemProperty().addListener(e -> {
@@ -95,8 +100,7 @@ public class ClientView {
         return channelListView;
     }
 
-    // TODO Fix this
-    public void reCreateLeft(Channel[] channelArray) {
+    public Node reCreateLeft(Channel[] channelArray) {
         channelListView = new ListView<>();
         ObservableList<Channel> channels = FXCollections.observableArrayList(Arrays.asList(channelArray));
         channelListView.setItems(channels);
@@ -105,5 +109,6 @@ public class ClientView {
             selectedChannel = channelListView.getSelectionModel().getSelectedItem();
             clientController.changeChannel(selectedChannel);
         });
+        return channelListView;
     }
 }
