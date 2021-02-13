@@ -24,42 +24,6 @@ public class ClientController {
         currentChannel = null;
     }
 
-    @Deprecated
-    // TODO Remove this
-    public boolean canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest build = HttpRequest.newBuilder().GET().uri(
-                new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
-        HttpResponse<String> send;
-        try {
-            send = HttpClient.newBuilder()
-                    .build()
-                    .send(build, HttpResponse.BodyHandlers.ofString());
-            if (send.statusCode() == 200) {
-                this.channels = send.body();
-                return true;
-            }
-            if (send.statusCode() == 409) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Username already taken");
-                alert.show();
-            }
-            // Add if statement for CONFLICT HttpStatus
-        } catch (ConnectException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to connect");
-            alert.show();
-        }
-        return false;
-    }
-
-    @Deprecated
-    public void connectToServer(String ip, String port, String username) throws IOException, InterruptedException, URISyntaxException {
-        clientModel.setIp(ip);
-        clientModel.setPort(port);
-        clientModel.setUsername(username);
-        clientModel.setChannels(channels);
-        connectedToServer = true;
-    }
-
-
     public void refreshData() {
         Thread thread = new Thread(() -> {
             while(true) {
@@ -84,6 +48,8 @@ public class ClientController {
         thread.start();
     }
 
+    @Deprecated
+    // Move this to DataRetrieveHandler
     public String grabChannels() throws URISyntaxException {
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
                 new URI("http://" + clientModel.getIp() + ":" + clientModel.getPort() + "/connect/servers")).build();
@@ -107,6 +73,10 @@ public class ClientController {
         return null;
     }
 
+    /*
+    TODO:
+        - Remove these
+     */
     public String grabChannelMessages() {
         return "";
     }

@@ -17,6 +17,15 @@ public class ClientModel {
     private Collection<Channel> channels;
     private Collection<User> users;
     private Collection<Message> channelMessages;
+    private boolean connectedToServer = false;
+
+    public boolean isConnectedToServer() {
+        return connectedToServer;
+    }
+
+    public void setConnectedToServer(boolean connectedToServer) {
+        this.connectedToServer = connectedToServer;
+    }
 
     public String getIp() {
         return ip;

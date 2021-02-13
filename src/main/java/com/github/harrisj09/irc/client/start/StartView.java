@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 
 public class StartView {
-    private final StartController startController;
     private final Stage stage;
     private Node top;
     private Node center;
@@ -24,8 +23,7 @@ public class StartView {
     private HBox userNameBox;
     private Button button;
 
-    public StartView(StartController startController, Stage stage) {
-        this.startController = startController;
+    public StartView(Stage stage) {
         this.stage = stage;
     }
 

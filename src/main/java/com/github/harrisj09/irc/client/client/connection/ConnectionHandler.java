@@ -1,6 +1,8 @@
 package com.github.harrisj09.irc.client.client.connection;
 
+import com.github.harrisj09.irc.client.client.ClientModel;
 import javafx.scene.control.Alert;
+import lombok.Data;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -10,17 +12,20 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+@Data
 public class ConnectionHandler {
 
     private String channels;
     private String ip;
     private String port;
     private String username;
+    private ClientModel model;
 
-    public ConnectionHandler(String ip, String port, String username) {
+    public ConnectionHandler(String ip, String port, String username, ClientModel model) {
         this.ip = ip;
         this.port = port;
         this.username = username;
+        this.model = model;
     }
 
     public boolean canConnect() throws URISyntaxException, IOException, InterruptedException {
@@ -47,35 +52,11 @@ public class ConnectionHandler {
         return false;
     }
 
-    public String getChannels() {
-        return channels;
-    }
-
-    public void setChannels(String channels) {
-        this.channels = channels;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void connectToServer() throws IOException {
+        model.setIp(getIp());
+        model.setPort(getPort());
+        model.setUsername(getUsername());
+        model.setChannels(getChannels());
+        model.setConnectedToServer(true);
     }
 }
