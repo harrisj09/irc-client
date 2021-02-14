@@ -2,6 +2,7 @@ package com.github.harrisj09.irc.client.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.harrisj09.irc.client.data.Channel;
+import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
@@ -18,9 +19,11 @@ public class ClientController {
     private String channels;
     private Channel currentChannel;
     private boolean connectedToServer = false;
+    private DataRetrieveHandler dataRetrieveHandler;
 
-    public ClientController(ClientModel clientModel) {
+    public ClientController(ClientModel clientModel, DataRetrieveHandler dataRetrieveHandler) {
         this.clientModel = clientModel;
+        this.dataRetrieveHandler = dataRetrieveHandler;
         currentChannel = null;
     }
 
@@ -71,18 +74,6 @@ public class ClientController {
             alert.show();
         }
         return null;
-    }
-
-    /*
-    TODO:
-        - Remove these
-     */
-    public String grabChannelMessages() {
-        return "";
-    }
-
-    public String grabServerUsers() {
-        return "";
     }
 
     public Channel[] getChannelsArray() throws JsonProcessingException {

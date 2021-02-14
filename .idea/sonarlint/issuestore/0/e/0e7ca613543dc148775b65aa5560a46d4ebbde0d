@@ -1,24 +1,4 @@
 
-E	java:S108G")Either remove or fill this block of code.(å¥‡8Îö¿Âø.
-X
-java:S1481@"6Remove this unused "connectionHandler" local variable.(¼üÅ¶ùÿÿÿÿ8†şÍßù.
-W
-java:S1128"5Remove this unused import 'java.net.http.HttpClient'.(Œ³’Öşÿÿÿÿ8ãÑ¿Âø.
-S
-java:S1128"7Remove this unused import 'javafx.scene.control.Alert'.(ÊÇê:8ãÑ¿Âø.
-X
-java:S1128"6Remove this unused import 'java.net.http.HttpRequest'.(ş€ŠÍşÿÿÿÿ8ãÑ¿Âø.
-X
-java:S1128"6Remove this unused import 'java.net.ConnectException'.(éâ¿Šüÿÿÿÿ8ãÑ¿Âø.
-F
-java:S1128")Remove this unused import 'java.net.URI'.(Ö¦¨°8ãÑ¿Âø.
-]	java:S125("<This block of commented-out lines of code should be removed.(·‡‰éøÿÿÿÿ8ø‹‘¹ñ.
-q
-java:S1128"ORemove this unused import 'com.fasterxml.jackson.core.JsonProcessingException'.(ßÔïÇûÿÿÿÿ8ä«¾Âø.
-W	java:S125%"<This block of commented-out lines of code should be removed.(¢©º8‰‡¦¢î.
-Z
-java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8¼®Âø.
-Y
-java:S1128"7Remove this unused import 'java.net.http.HttpResponse'.(’ûÌûÿÿÿÿ8ãÑ¿Âø.
 h
-java:S2142J"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
+java:S2142="FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äı”ñ.
+E	java:S108:")Either remove or fill this block of code.(å¥‡8Îö¿Âø.

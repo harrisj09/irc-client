@@ -4,6 +4,7 @@ import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
 import com.github.harrisj09.irc.client.client.connection.ConnectionHandler;
+import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 import com.github.harrisj09.irc.client.screen.ScreenController;
 import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
@@ -35,10 +36,6 @@ public class Main extends Application {
         Scene scene = new Scene(new Pane());
         primaryStage.setScene(scene);
 
-        ClientModel model = new ClientModel();
-        ClientController controller = new ClientController(model);
-        ClientView view = new ClientView(controller, primaryStage);
-
         StartView startView = new StartView(primaryStage);
 
         ScreenController screenController = new ScreenController(scene);
@@ -48,9 +45,12 @@ public class Main extends Application {
         primaryStage.setHeight(600);
         primaryStage.setWidth(600);
         EventHandler<MouseEvent> eventHandler = e -> {
+            ClientModel model = new ClientModel();
             connectionHandler = new ConnectionHandler(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), model);
             try {
                 if (connectionHandler.canConnect()) {
+                    ClientController controller = new ClientController(model, new DataRetrieveHandler(startView.getIp().getText(), startView.getPort().getText()));
+                    ClientView view = new ClientView(controller, primaryStage);
                     connectionHandler.connectToServer();
                     screenController.addScreen("client", view.getLayout());
                     screenController.activate("client");
