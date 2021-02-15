@@ -19,18 +19,10 @@ public class ConnectionHandler {
     private String ip;
     private String port;
     private String username;
-    private ClientModel model;
 
-    public ConnectionHandler(String ip, String port, String username, ClientModel model) {
-        this.ip = ip;
-        this.port = port;
-        this.username = username;
-        this.model = model;
-    }
-
-    public boolean canConnect() throws URISyntaxException, IOException, InterruptedException {
+    public boolean canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
-                new URI("http://" + this.ip + ":" + this.port + "/connect/" + this.username)).build();
+                new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
         HttpResponse<String> send;
         try {
             send = HttpClient.newBuilder()
@@ -38,6 +30,9 @@ public class ConnectionHandler {
                     .send(build, HttpResponse.BodyHandlers.ofString());
             if (send.statusCode() == 200) {
                 setChannels(send.body());
+                setIp(ip);
+                setPort(port);
+                setUsername(username);
                 return true;
             }
             if (send.statusCode() == 409) {
@@ -50,13 +45,5 @@ public class ConnectionHandler {
             alert.show();
         }
         return false;
-    }
-
-    public void connectToServer() throws IOException {
-        model.setIp(getIp());
-        model.setPort(getPort());
-        model.setUsername(getUsername());
-        model.setChannels(getChannels());
-        model.setConnectedToServer(true);
     }
 }

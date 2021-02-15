@@ -4,6 +4,7 @@ import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
 import com.github.harrisj09.irc.client.client.connection.ConnectionHandler;
+import com.github.harrisj09.irc.client.data.handlers.DataMappingHandlers;
 import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 import com.github.harrisj09.irc.client.screen.ScreenController;
 import com.github.harrisj09.irc.client.start.StartView;
@@ -44,19 +45,20 @@ public class Main extends Application {
 
         primaryStage.setHeight(600);
         primaryStage.setWidth(600);
+
         EventHandler<MouseEvent> eventHandler = e -> {
-            ClientModel model = new ClientModel();
-            connectionHandler = new ConnectionHandler(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), model);
+            ClientModel model = new ClientModel(startView.getIp().getText(), startView.getPort().getText(), startView.getUsername().getText(), connectionHandler = new ConnectionHandler());
+            ClientController controller = new ClientController(model, new DataRetrieveHandler());
+            ClientView view = new ClientView(controller, primaryStage);
+            connectionHandler = new ConnectionHandler();
             try {
-                if (connectionHandler.canConnect()) {
-                    ClientController controller = new ClientController(model, new DataRetrieveHandler(startView.getIp().getText(), startView.getPort().getText()));
-                    ClientView view = new ClientView(controller, primaryStage);
-                    connectionHandler.connectToServer();
+                if (model.canConnect()) {
+                    model.connectToServer();
                     screenController.addScreen("client", view.getLayout());
                     screenController.activate("client");
                     primaryStage.setMaximized(true);
                 } else {
-
+                    // create an alert saying you had trouble connecting
                 }
             } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
