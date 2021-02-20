@@ -5,5 +5,6 @@ module irc {
     //requires ch.qos.logback.classic;
     //requires org.slf4j;
     requires static lombok;
+    requires java.logging;
     opens com.github.harrisj09.irc.client;
 }

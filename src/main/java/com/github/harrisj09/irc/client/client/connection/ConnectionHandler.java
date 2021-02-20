@@ -1,6 +1,5 @@
 package com.github.harrisj09.irc.client.client.connection;
 
-import com.github.harrisj09.irc.client.client.ClientModel;
 import javafx.scene.control.Alert;
 import lombok.Data;
 
@@ -15,6 +14,7 @@ import java.net.http.HttpResponse;
 @Data
 public class ConnectionHandler {
 
+    // Not sure if these will be used
     private String channels;
     private String ip;
     private String port;
@@ -25,10 +25,9 @@ public class ConnectionHandler {
                 new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
         HttpResponse<String> send;
         try {
-            send = HttpClient.newBuilder()
-                    .build()
-                    .send(build, HttpResponse.BodyHandlers.ofString());
+            send = HttpClient.newBuilder().build().send(build, HttpResponse.BodyHandlers.ofString());
             if (send.statusCode() == 200) {
+                // fix this
                 setChannels(send.body());
                 setIp(ip);
                 setPort(port);

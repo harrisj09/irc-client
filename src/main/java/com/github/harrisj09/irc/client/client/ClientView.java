@@ -12,7 +12,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -62,10 +61,11 @@ public class ClientView {
      */
 
     public BorderPane getLayout() throws JsonProcessingException {
+        borderPane.setBottom(createBottom());
+        // have all of these run in executor thread
         borderPane.setCenter(createCenter());
         borderPane.setLeft(createLeft());
         borderPane.setRight(createRight());
-        borderPane.setBottom(createBottom());
         return borderPane;
     }
 

@@ -1,5 +1,6 @@
 package com.github.harrisj09.irc.client.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.harrisj09.irc.client.data.Channel;
 import com.github.harrisj09.irc.client.data.Message;
 import com.github.harrisj09.irc.client.data.User;
@@ -9,9 +10,7 @@ import java.net.URISyntaxException;
 
 public class ClientController {
     private ClientModel clientModel;
-    private String channels;
     private Channel currentChannel;
-    private boolean connectedToServer = false;
     private DataRetrieveHandler dataRetrieveHandler;
 
     public ClientController(ClientModel clientModel, DataRetrieveHandler dataRetrieveHandler) {
@@ -22,14 +21,47 @@ public class ClientController {
 
     /*
     This will call a method from clientModel that
-    uses the ExecutorService to retrive data
+    uses the ExecutorService to retrieve data
+
+    // THIS COULD BE USEFUL SINCE YOU NEED A RUN LATER IF IM CORRECT
+         public void refreshData() {
+        Thread thread = new Thread(() -> {
+            while(true) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException exc) {
+                    throw new Error("Unexpected interruption", exc);
+                }
+                if (clientController.isConnectedToServer()) {
+                    Platform.runLater(() -> {
+                        try {
+                            System.out.println("Here");
+                            System.out.println(clientController.grabChannels());
+                            clientController.setChannels(clientController.grabChannels());
+                            Channel[] channels = clientController.getChannelsArray();
+                            System.out.println(Arrays.toString(channels));
+                            borderPane.setLeft(reCreateLeft(channels));
+                            if (selectedChannel != null) {
+
+                            }
+                        } catch (URISyntaxException | JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
      */
 
-    public Channel[] grabChannels() throws URISyntaxException {
-        dataRetrieveHandler.grabChannels(clientModel.getIp(), clientModel.getPort());
-        return null;
+    public Channel[] grabChannels() throws URISyntaxException, JsonProcessingException {
+        String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "connect/servers");
+        return dataRetrieveHandler.grabChannels(data);
     }
 
+    // fix this
     public User[] grabUsers() throws URISyntaxException {
         //dataRetrieveHandler.grabUsers(clientModel.getIp(), clientModel.getPort());
         return null;

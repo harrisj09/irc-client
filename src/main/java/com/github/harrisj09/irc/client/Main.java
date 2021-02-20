@@ -11,6 +11,7 @@ import com.github.harrisj09.irc.client.start.StartView;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -58,7 +59,8 @@ public class Main extends Application {
                     screenController.activate("client");
                     primaryStage.setMaximized(true);
                 } else {
-                    // create an alert saying you had trouble connecting
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Trouble Connecting");
+                    alert.show();
                 }
             } catch (URISyntaxException | IOException | InterruptedException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
