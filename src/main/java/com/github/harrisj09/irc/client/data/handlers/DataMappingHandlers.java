@@ -9,26 +9,30 @@ import com.github.harrisj09.irc.client.data.User;
 public class DataMappingHandlers {
 
     public Channel[] createChannelArray(String channels) throws JsonProcessingException {
-        return mapChannelData(channels);
+        if (channels != null) {
+            String[] channelString = new ObjectMapper().readValue(channels, String[].class);
+            Channel[] channelArray = new Channel[channelString.length];
+            for (int i = 0; i < channelArray.length; i++) {
+                channelArray[i] = new Channel(channelString[i]);
+            }
+            return channelArray;
+        }
+        return new Channel[0];
     }
 
     public User[] createUserArray(String users) throws JsonProcessingException {
-        return mapUserData(users);
+        if (users != null) {
+            String[] userString = new ObjectMapper().readValue(users, String[].class);
+            User[] usersArray = new User[userString.length];
+            for (int i = 0; i < usersArray.length; i++) {
+                usersArray[i] = new User(userString[i]);
+            }
+            return usersArray;
+        }
+        return null;
     }
 
     public Message[] createMessageArray(String messages) throws JsonProcessingException {
-        return mapMessageData(messages);
-    }
-
-    private Channel[] mapChannelData(String data) throws JsonProcessingException {
-        return new ObjectMapper().readValue(data, Channel[].class);
-    }
-
-    private User[] mapUserData(String data) throws JsonProcessingException {
-        return new ObjectMapper().readValue(data, User[].class);
-    }
-
-    private Message[] mapMessageData(String data) throws JsonProcessingException {
-        return new ObjectMapper().readValue(data, Message[].class);
+        return null;
     }
 }

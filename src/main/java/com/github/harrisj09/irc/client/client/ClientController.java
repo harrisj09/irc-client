@@ -19,52 +19,18 @@ public class ClientController {
         currentChannel = null;
     }
 
-    /*
-    This will call a method from clientModel that
-    uses the ExecutorService to retrieve data
-
-    // THIS COULD BE USEFUL SINCE YOU NEED A RUN LATER IF IM CORRECT
-         public void refreshData() {
-        Thread thread = new Thread(() -> {
-            while(true) {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException exc) {
-                    throw new Error("Unexpected interruption", exc);
-                }
-                if (clientController.isConnectedToServer()) {
-                    Platform.runLater(() -> {
-                        try {
-                            System.out.println("Here");
-                            System.out.println(clientController.grabChannels());
-                            clientController.setChannels(clientController.grabChannels());
-                            Channel[] channels = clientController.getChannelsArray();
-                            System.out.println(Arrays.toString(channels));
-                            borderPane.setLeft(reCreateLeft(channels));
-                            if (selectedChannel != null) {
-
-                            }
-                        } catch (URISyntaxException | JsonProcessingException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
-    }
-     */
-
     public Channel[] grabChannels() throws URISyntaxException, JsonProcessingException {
         String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "connect/servers");
         return dataRetrieveHandler.grabChannels(data);
     }
 
-    // fix this
-    public User[] grabUsers() throws URISyntaxException {
-        //dataRetrieveHandler.grabUsers(clientModel.getIp(), clientModel.getPort());
-        return null;
+    public void changeChannel(Channel channel) {
+        currentChannel = channel;
+    }
+
+    public User[] grabUsers() throws URISyntaxException, JsonProcessingException {
+        String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "connect/users");
+        return dataRetrieveHandler.grabUsers(data);
     }
 
     public Message[] grabMessages(Channel currentChannel) throws URISyntaxException {

@@ -27,9 +27,11 @@ public class DataRetrieveHandler {
         HttpRequest build = HttpRequest.newBuilder().GET().uri(new URI(server)).build();
         HttpResponse<String> send;
         try {
-            send = getResponse(build);
+            send = HttpClient.newBuilder().build().send(build, HttpResponse.BodyHandlers.ofString());
+            System.out.println(send.body());
             // Successful
             if (send.statusCode() == 200) {
+                this.server = "http://";
                 return send.body();
             }
             if (send.statusCode() == 409) {
@@ -40,6 +42,7 @@ public class DataRetrieveHandler {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to connect");
             alert.show();
         }
+        this.server = "http://";
         return null;
     }
 
