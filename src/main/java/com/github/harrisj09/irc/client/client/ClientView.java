@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,6 +38,13 @@ public class ClientView {
     private Message[] messages;
 
     public ClientView(ClientController clientController, Stage stage) {
+        try {
+            System.out.println(clientController.grabMessages(new Channel("hello")));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         this.clientController = clientController;
         this.stage = stage;
         executor = Executors.newFixedThreadPool(3);
@@ -96,10 +104,10 @@ public class ClientView {
 
     public Node createLeft() throws JsonProcessingException, URISyntaxException {
         ObservableList<Channel> channels = null;
-        Channel[] channelArray = clientController.grabChannels();
+        List<Channel> channelList = clientController.grabChannels();
         channelListView = new ListView<>();
-        if(channelArray.length !=  0) {
-            channels = FXCollections.observableArrayList(Arrays.asList(clientController.grabChannels()));
+        if(!channelList.isEmpty()) {
+            channels = FXCollections.observableArrayList(clientController.grabChannels());
         }
         channelListView.setItems(channels);
         channelListView.setCellFactory(param -> new ChannelCell(clientController));

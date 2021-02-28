@@ -31,13 +31,9 @@ u
 Esrc/main/java/com/github/harrisj09/irc/client/data/cell/UserCell.java,8\6\86ae294d8f21671e5716c2b11f4a9ca634edd306
 †
 Vsrc/main/java/com/github/harrisj09/irc/client/client/connection/ConnectionHandler.java,2\f\2fc46f7fda747c6cd7d9b877a81675a148bf0d66
-v
-Fsrc/main/java/com/github/harrisj09/irc/client/data/dto/ChannelDTO.java,e\3\e350992ae289dfceec222da6bd3a7a7918ec7e33
-v
-Fsrc/main/java/com/github/harrisj09/irc/client/data/dto/MessageDTO.java,d\c\dcee32131c0de8f0cd8db261b8077e136b685d14
-s
-Csrc/main/java/com/github/harrisj09/irc/client/data/dto/UserDTO.java,2\3\238ea7f922f4f2bd4b34c0a4500532796a4b6cdc
 „
 Tsrc/main/java/com/github/harrisj09/irc/client/data/handlers/DataMappingHandlers.java,0\7\0716eb240faaf24e23b6811d9f8361ef40a09395
 „
 Tsrc/main/java/com/github/harrisj09/irc/client/data/handlers/DataRetrieveHandler.java,8\b\8b7cd4d58e1e97cd2a94659af08377882e2b7fba
+v
+Fsrc/main/java/com/github/harrisj09/irc/client/data/DTO/MessageDTO.java,c\c\cc15bd9818e2bda2c7749ab4e6c2d8955444f8e0

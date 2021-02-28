@@ -5,6 +5,7 @@ import com.github.harrisj09.irc.client.data.Channel;
 import com.github.harrisj09.irc.client.data.Message;
 import com.github.harrisj09.irc.client.data.User;
 import javafx.scene.control.Alert;
+import lombok.Data;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,6 +13,8 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.UUID;
+
 
 public class DataRetrieveHandler {
     // http://localhost:8080/createchannel/{{name}}

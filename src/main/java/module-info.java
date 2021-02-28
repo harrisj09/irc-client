@@ -7,4 +7,5 @@ module irc {
     requires static lombok;
     requires java.logging;
     opens com.github.harrisj09.irc.client;
+    opens com.github.harrisj09.irc.client.data.handlers;
 }

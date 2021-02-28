@@ -7,6 +7,9 @@ import com.github.harrisj09.irc.client.data.User;
 import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ClientController {
     private ClientModel clientModel;
@@ -19,22 +22,23 @@ public class ClientController {
         currentChannel = null;
     }
 
-    public Channel[] grabChannels() throws URISyntaxException, JsonProcessingException {
+    public List<Channel> grabChannels() throws URISyntaxException, JsonProcessingException {
         String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "connect/servers");
-        return dataRetrieveHandler.grabChannels(data);
+        return Arrays.asList(dataRetrieveHandler.grabChannels(data));
     }
 
     public void changeChannel(Channel channel) {
         currentChannel = channel;
     }
 
-    public User[] grabUsers() throws URISyntaxException, JsonProcessingException {
+    public List<User> grabUsers() throws URISyntaxException, JsonProcessingException {
         String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "connect/users");
-        return dataRetrieveHandler.grabUsers(data);
+        return Arrays.asList(dataRetrieveHandler.grabUsers(data));
     }
 
-    public Message[] grabMessages(Channel currentChannel) throws URISyntaxException {
-        //dataRetrieveHandler.grabMessages(clientModel.getIp(), clientModel.getPort());
-        return null;
+    public List<Message> grabMessages(Channel currentChannel) throws URISyntaxException, JsonProcessingException {
+        // channels/hello/latest
+        String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "channels/" + currentChannel.getChannelName() + "/latest");
+        return Arrays.asList(dataRetrieveHandler.grabMessages(data));
     }
 }
