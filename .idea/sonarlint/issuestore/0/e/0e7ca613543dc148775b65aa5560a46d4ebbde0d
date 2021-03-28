@@ -1,9 +1,7 @@
 
-€
-java:S1450"`Remove the "connectionHandler" field and declare it as a local variable in the relevant methods.(ÖÐ¶ßûÿÿÿÿ8í×Ò”ú.
-~
-java:S1128"^Remove this unused import 'com.github.harrisj09.irc.client.data.handlers.DataMappingHandlers'.(¶üÙ©øÿÿÿÿ8õïè—ú.
-N
-java:S1121".Extract the assignment out of this expression.(•Ýºèúÿÿÿÿ8ÙË„”ú.
-f
-java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äý”ñ.
+P
+java:S11212".Extract the assignment out of this expression.(•Ýºèúÿÿÿÿ8ÙË„”ú.
+‚
+java:S1450"`Remove the "connectionHandler" field and declare it as a local variable in the relevant methods.(ÖÐ¶ßûÿÿÿÿ8í×Ò”ú.
+h
+java:S2142@"FEither re-interrupt this method or rethrow the "InterruptedException".(®¼©†ûÿÿÿÿ8€äý”ñ.

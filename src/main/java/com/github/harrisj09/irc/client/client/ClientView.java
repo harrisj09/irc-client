@@ -5,6 +5,7 @@ import com.github.harrisj09.irc.client.data.Channel;
 import com.github.harrisj09.irc.client.data.Message;
 import com.github.harrisj09.irc.client.data.User;
 import com.github.harrisj09.irc.client.data.cell.ChannelCell;
+import com.github.harrisj09.irc.client.data.cell.UserCell;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -30,21 +32,19 @@ public class ClientView {
     private final Stage stage;
     private BorderPane borderPane;
     private ListView<Channel> channelListView = new ListView<>();
+    private ListView<User> usersListView = new ListView<>();
+    private ListView<Message> messagesListView = new ListView<>();
     private Channel selectedChannel = null;
     private ExecutorService executor;
 
-    private Channel[] channels;
-    private User[] users;
-    private Message[] messages;
-
     public ClientView(ClientController clientController, Stage stage) {
-        try {
+/*        try {
             System.out.println(clientController.grabMessages(new Channel("hello")));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        }
+        }*/
         this.clientController = clientController;
         this.stage = stage;
         executor = Executors.newFixedThreadPool(3);
@@ -55,13 +55,14 @@ public class ClientView {
         Thread thread = new Thread(() -> {
             while(true) {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException exc) {
                     throw new Error("Unexpected interruption", exc);
                 }
                 Platform.runLater(() -> {
                     try {
                         borderPane.setLeft(createLeft());
+                        borderPane.setRight(createRight());
                     } catch (JsonProcessingException | URISyntaxException e) {
                         e.printStackTrace();
                     }
@@ -75,7 +76,6 @@ public class ClientView {
         // Messages
         borderPane.setCenter(createCenter());
         // user
-        borderPane.setRight(createRight());
         return borderPane;
     }
 
@@ -95,11 +95,17 @@ public class ClientView {
         return new ScrollPane();
     }
 
-    public Node createRight() throws JsonProcessingException {
+    public Node createRight() throws JsonProcessingException, URISyntaxException {
         // https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ScrollPane.html
-        ScrollPane usersList = new ScrollPane();
-        usersList.setPrefWidth(300);
-        return new ScrollPane(new Text("Users"));
+        ObservableList<User> users = null;
+        List<User> usersList = clientController.grabUsers();
+        usersListView = new ListView<>();
+        if(!usersList.isEmpty()) {
+            users = FXCollections.observableArrayList(clientController.grabUsers());
+        }
+        usersListView.setItems(users);
+        usersListView.setCellFactory(param -> new UserCell(clientController));
+        return usersListView;
     }
 
     public Node createLeft() throws JsonProcessingException, URISyntaxException {

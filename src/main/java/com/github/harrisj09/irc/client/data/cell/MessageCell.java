@@ -2,7 +2,6 @@ package com.github.harrisj09.irc.client.data.cell;
 
 import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.data.Message;
-import com.github.harrisj09.irc.client.data.User;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
@@ -21,11 +20,11 @@ public class MessageCell extends ListCell<Message> {
     protected void updateItem(Message item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null && !empty) {
-            setGraphic(createChannelCell(item));
+            setGraphic(createMessageCell(item));
         }
     }
 
-    private Node createChannelCell(Message item) {
+    private Node createMessageCell(Message item) {
         return new HBox(new Text(item.getUser()), new Text(item.getMessage()));
     }
 }

@@ -20,7 +20,7 @@ public class ConnectionHandler {
     private String port;
     private String username;
 
-    public boolean canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
+    public boolean  canConnect(String ip, String port, String username) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
                 new URI("http://" + ip + ":" + port + "/connect/" + username)).build();
         HttpResponse<String> send;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.harrisj09.irc.client.data.Channel;
 import com.github.harrisj09.irc.client.data.DTO.MessageDTO;
+import com.github.harrisj09.irc.client.data.DTO.UserDTO;
 import com.github.harrisj09.irc.client.data.Message;
 import com.github.harrisj09.irc.client.data.User;
 import lombok.Data;
@@ -29,15 +30,9 @@ public class DataMappingHandlers {
     }
 
     public User[] createUserArray(String users) throws JsonProcessingException {
-        if (users != null) {
-            String[] userString = new ObjectMapper().readValue(users, String[].class);
-            User[] usersArray = new User[userString.length];
-            for (int i = 0; i < usersArray.length; i++) {
-                usersArray[i] = new User(userString[i]);
-            }
-            return usersArray;
-        }
-        return null;
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserDTO[] userDTOS = objectMapper.readValue(users, UserDTO[].class);
+        return Stream.of(userDTOS).map(UserDTO::createUser).toArray(User[]::new);
     }
 
     public Message[] createMessageArray(String messages) throws JsonProcessingException {

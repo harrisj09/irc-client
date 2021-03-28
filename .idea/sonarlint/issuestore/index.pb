@@ -37,3 +37,7 @@ Tsrc/main/java/com/github/harrisj09/irc/client/data/handlers/DataMappingHandlers
 Tsrc/main/java/com/github/harrisj09/irc/client/data/handlers/DataRetrieveHandler.java,8\b\8b7cd4d58e1e97cd2a94659af08377882e2b7fba
 v
 Fsrc/main/java/com/github/harrisj09/irc/client/data/DTO/MessageDTO.java,c\c\cc15bd9818e2bda2c7749ab4e6c2d8955444f8e0
+v
+Fsrc/main/java/com/github/harrisj09/irc/client/data/DTO/ChannelDTO.java,b\7\b7f7f9c07d1897164a402259e17ab3ed75f7e38b
+s
+Csrc/main/java/com/github/harrisj09/irc/client/data/DTO/UserDTO.java,d\0\d03399d652decc1e1cec3fa454a3a7782584fc63

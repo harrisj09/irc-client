@@ -4,7 +4,6 @@ import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.client.ClientModel;
 import com.github.harrisj09.irc.client.client.ClientView;
 import com.github.harrisj09.irc.client.client.connection.ConnectionHandler;
-import com.github.harrisj09.irc.client.data.handlers.DataMappingHandlers;
 import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 import com.github.harrisj09.irc.client.screen.ScreenController;
 import com.github.harrisj09.irc.client.start.StartView;

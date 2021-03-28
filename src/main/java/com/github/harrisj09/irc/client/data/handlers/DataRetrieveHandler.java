@@ -14,12 +14,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DataRetrieveHandler {
     // http://localhost:8080/createchannel/{{name}}
     private String server = "http://";
     private DataMappingHandlers dataMappingHandlers;
+    private static final Logger logger = Logger.getLogger(DataRetrieveHandler.class.getName());
 
     public DataRetrieveHandler() {
         this.dataMappingHandlers = new DataMappingHandlers();
@@ -31,7 +34,7 @@ public class DataRetrieveHandler {
         HttpResponse<String> send;
         try {
             send = HttpClient.newBuilder().build().send(build, HttpResponse.BodyHandlers.ofString());
-            System.out.println(send.body());
+            logger.log(Level.INFO, "Data: " + send.body() + "\nEndpoint: " + endpoint);
             // Successful
             if (send.statusCode() == 200) {
                 this.server = "http://";

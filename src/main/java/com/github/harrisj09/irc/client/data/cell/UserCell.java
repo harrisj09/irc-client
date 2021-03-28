@@ -20,11 +20,11 @@ public class UserCell extends ListCell<User> {
     protected void updateItem(User item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null && !empty) {
-            setGraphic(createChannelCell(item));
+            setGraphic(createUserCell(item));
         }
     }
 
-    private Node createChannelCell(User item) {
+    private Node createUserCell(User item) {
         return new HBox(new Text(item.getUserName()));
     }
 }
