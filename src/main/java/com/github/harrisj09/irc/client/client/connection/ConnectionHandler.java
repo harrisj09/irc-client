@@ -45,4 +45,8 @@ public class ConnectionHandler {
         }
         return false;
     }
+
+    public void sendMessage(String ip, String port, String username, String message) {
+
+    }
 }

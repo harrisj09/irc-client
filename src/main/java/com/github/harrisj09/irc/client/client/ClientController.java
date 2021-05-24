@@ -7,7 +7,6 @@ import com.github.harrisj09.irc.client.data.User;
 import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,5 +39,9 @@ public class ClientController {
         // channels/hello/latest
         String data = dataRetrieveHandler.fetchData(clientModel.getIp(), clientModel.getPort(), "channels/" + currentChannel.getChannelName() + "/latest");
         return Arrays.asList(dataRetrieveHandler.grabMessages(data));
+    }
+
+    public void sendMessage(String channelName, String message) {
+
     }
 }

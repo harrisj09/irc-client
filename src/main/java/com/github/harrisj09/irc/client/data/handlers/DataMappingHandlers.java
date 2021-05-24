@@ -7,9 +7,7 @@ import com.github.harrisj09.irc.client.data.DTO.MessageDTO;
 import com.github.harrisj09.irc.client.data.DTO.UserDTO;
 import com.github.harrisj09.irc.client.data.Message;
 import com.github.harrisj09.irc.client.data.User;
-import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class DataMappingHandlers {
