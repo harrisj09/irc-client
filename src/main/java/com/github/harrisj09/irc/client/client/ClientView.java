@@ -81,14 +81,21 @@ public class ClientView {
         submit.setPrefWidth(100);
 
         EventHandler<MouseEvent> eventHandler = e -> {
+            System.out.println(input.getText());
             if (selectedChannel != null && !input.getText().equals("")) {
-
+                try {
+                    clientController.sendMessage(selectedChannel.getChannelName(), input.getText());
+                } catch (URISyntaxException uriSyntaxException) {
+                    uriSyntaxException.printStackTrace();
+                }
             }
+            input.setText("");
         };
         submit.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         return new HBox(input, submit);
     }
 
+    // TODO displays messages in brackets
     public Node createCenter() throws JsonProcessingException, URISyntaxException {
         // https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ScrollPane.html
         ObservableList<Message> messages = null;
