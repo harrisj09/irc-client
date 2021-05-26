@@ -4,7 +4,6 @@ import com.github.harrisj09.irc.client.client.ClientController;
 import com.github.harrisj09.irc.client.data.Channel;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 

@@ -47,8 +47,9 @@ public class ClientController {
         return Arrays.asList(dataRetrieveHandler.grabMessages(data));
     }
 
-    // TODO Might break cause of / at channels
+    // TODO Spaces won't work fix that
     public void sendMessage(String channelName, String message) throws URISyntaxException {
+
         HttpRequest build = HttpRequest.newBuilder().GET().uri(
                 new URI("http://" + clientModel.getIp() + ":" + clientModel.getPort() + "/channels/" + channelName + "/" + clientModel.getUsername() + "/" + message)).build();
         HttpResponse<String> send;
@@ -64,5 +65,12 @@ public class ClientController {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String removeSpaces(String message) {
+        while (message.indexOf(" ") != -1) {
+
+        }
+        return message;
     }
 }

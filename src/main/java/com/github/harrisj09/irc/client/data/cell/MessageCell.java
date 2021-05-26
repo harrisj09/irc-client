@@ -25,6 +25,6 @@ public class MessageCell extends ListCell<Message> {
     }
 
     private Node createMessageCell(Message item) {
-        return new HBox(new Text(item.getUser()), new Text(item.getMessage()));
+        return new HBox(new Text(item.getUser() + "\t"), new Text(item.getMessage()));
     }
 }

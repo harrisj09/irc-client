@@ -15,3 +15,7 @@ o
 ?src/main/java/com/github/harrisj09/irc/client/data/Message.java,c\5\c5921009485eddc959ee909491a7ed19d17a817c
 v
 Fsrc/main/java/com/github/harrisj09/irc/client/data/DTO/MessageDTO.java,c\c\cc15bd9818e2bda2c7749ab4e6c2d8955444f8e0
+o
+?src/main/java/com/github/harrisj09/irc/client/data/Channel.java,7\d\7d00ef41e3d702c3d95d712482bfec4d99bade58
+s
+Csrc/main/java/com/github/harrisj09/irc/client/data/DTO/UserDTO.java,d\0\d03399d652decc1e1cec3fa454a3a7782584fc63

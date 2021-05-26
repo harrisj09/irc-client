@@ -6,6 +6,7 @@ import com.github.harrisj09.irc.client.data.Channel;
 import com.github.harrisj09.irc.client.data.Message;
 import com.github.harrisj09.irc.client.data.User;
 import com.github.harrisj09.irc.client.data.cell.ChannelCell;
+import com.github.harrisj09.irc.client.data.cell.MessageCell;
 import com.github.harrisj09.irc.client.data.cell.UserCell;
 import com.github.harrisj09.irc.client.data.handlers.DataRetrieveHandler;
 import javafx.application.Platform;
@@ -107,6 +108,7 @@ public class ClientView {
             }
         }
         messagesListView.setItems(messages);
+        messagesListView.setCellFactory(param -> new MessageCell(clientController));
         return messagesListView;
     }
 
